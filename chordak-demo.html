@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>chordak demo</title>
+		<link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
+
+		<style>
+			input {
+				font-family: monospace;
+				text-align: center;
+				text-transform: uppercase;
+				font-size: 12pt;
+				width: 4em;
+				padding: 0;
+				margin: 0;
+			}
+
+			body {
+				font-size: 16px;
+				background-color: #EAEAEA;
+				width: 38em;
+			}
+
+			.flex-container {
+			    display: flex;
+			    flex-direction: column;
+			    flex-wrap: nowrap;
+			    justify-content: flex-start;
+			    align-content: flex-start;
+			    align-items: center;
+			}
+
+			.flex-item {
+				width: 100%;
+			    order: 0;
+			    flex: 0 1 auto;
+			    align-self: auto;
+			    margin-bottom: 1.5em;
+			}
+
+			#chords {
+				background-color: #FFF;
+				border-radius: 1.25em;
+				padding: 1em 0 1em 0;
+			}
+
+			.chord-column {
+				font-family: 'PT Mono', monospace;
+				font-size: 0.7em;
+				width: 5em;
+				padding-left: 0em;
+				margin-left: 3.5em;
+				float:left;
+			}
+
+			h3 {
+				font-size: 1.4em;
+				margin:0;
+				padding:0;
+			}
+
+			.settings {
+				font-family: monospace;
+				padding-left: 2em;
+				float:left;
+			}
+
+			.practice {
+				font-family: 'PT Mono', monospace;
+			    float:left;
+			    width: 100%;
+			    font-size: 1em;
+				border-radius: 1.25em;
+				overflow: hidden;
+			}
+
+			.flex-container-practice {
+			    display: flex;
+			    flex-direction: column;
+			    flex-wrap: nowrap;
+			    justify-content: left;
+			    align-content: left;
+			    align-items: flex-start;
+			}
+
+			.flex-item-practice {
+			    order: 0;
+			    flex: 0 1 auto;
+			    align-self: auto;
+			    padding:0.75em 0em 0.75em 1em;
+			    width:100%;
+			    height:1.2em;
+			    margin:1px;
+			    background-color: #FFF;
+			}
+
+			.indicator {
+				 float:right;
+				 font-family: 'PT Mono', monospace;
+				 text-align: right;
+				 margin-right:1em;
+			}
+		</style>
+	</head>
+
+	<div class="flex-item" style="margin-bottom: 0.5em">	
+		<div class="indicator" style="width:5em">
+			<span id="speed">-</span> wpm
+		</div>
+		<div class="indicator" style="width:6em">
+			<span id="timer">0</span> sec
+		</div>
+	</div>
+
+	<body class="flex-container" style="padding-top: 0">
+		<div class="flex-item">
+			<div class="practice">
+				<div class="flex-container-practice">
+					<!-- <div class="flex-item-practice">
+					</div> -->
+					<div id="test" class="flex-item-practice"></div>
+					<div id="practice" class="flex-item-practice"></div>
+				</div>
+			</div>
+		</div>
+
+<!-- 		<div class="flex-item" id="chords">
+			<div class="chord-column">
+				<h3>0&nbsp;&nbsp;<small><small>E</small></small></h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+				<h3>6&nbsp;&nbsp;<small><small>I</small></small></h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9679;&#8197;&#9675;<br>
+				<br>
+			</div>
+			<div class="chord-column">
+				<h3>1&nbsp;&nbsp;<small><small>T</small></small></h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+				<h3>7&nbsp;&nbsp;<small><small>M</small></small></h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+			</div>
+			<div class="chord-column">
+				<h3>2&nbsp;&nbsp;<small><small>A</small></small></h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>	
+				<h3>8&nbsp;&nbsp;<small><small>S</small></small></h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+			</div>
+			<div class="chord-column">
+				<h3>3&nbsp;&nbsp;<small><small>O</small></small></h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+				<h3>9&nbsp;&nbsp;<small><small>U</small></small></h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+			</div>
+			<div class="chord-column">
+				<h3>4&nbsp;&nbsp;<small><small>B</small></small></h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+			</div>
+			<div class="chord-column">
+				<h3>5&nbsp;&nbsp;<small><small>N</small></small></h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+			</div>
+		</div> -->
+
+		<div class="flex-item" id="chords">
+			<div class="chord-column">
+				<h3>A</h3>
+				<!-- .&#9679;...<br> -->
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+				<br>
+
+				<h3>B</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3>C</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>D</h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9679;<br>
+				<br>
+				
+				<h3>E</h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+			</div>
+
+			<div class="chord-column">
+				<h3>F</h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>G</h3>
+				&#9675;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>H</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>I</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>J</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9679;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9679;&#8197;&#9679;<br>
+				<br>
+			</div>
+			
+			<div class="chord-column">
+				<h3>K</h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>L</h3>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>M</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3>N</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3>O</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+			</div>
+			
+			<div class="chord-column">
+				<h3>P</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3>Q</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3>R</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>S</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>T</h3>
+				&#9675;&#9675;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+			</div>
+			
+			<div class="chord-column">
+				<h3>U</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9675;&#9675;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3>V</h3>
+				&#9675;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>W</h3>
+				&#9675;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				&#9675;&#9675;&#9675;&#9679;&#8197;&#9679;<br>
+				<br>
+
+				<h3>X</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9679;<br>
+				<br>
+			</div>
+			
+			<div class="chord-column">
+				<h3>Y</h3>
+				&#9675;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9679;<br>
+				<br>
+
+				<h3>Z</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3 style="font-size:1em;;margin-top:0.25em">PERIOD</h3>
+				&#9679;&#9675;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9679;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				<br>
+
+				<h3 style="font-size:1em;;margin-top:0.25em">COMMA</h3>
+				&#9675;&#9679;&#9675;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9675;&#8197;&#9675;<br>
+				&#9675;&#9679;&#9679;&#9679;&#8197;&#9675;<br>
+				<br>
+
+				<h3 style="font-size:1em;;margin-top:0.25em">SPACE</h3>
+				&#9675;&#9675;&#9675;&#9675;&#8197;&#9679;<br>
+				<br>
+			</div>
+		</div>
+
+		<script>
+			var chords = {};			
+
+			//LETTERS
+			chords['1'] = ' ';
+			chords['432'] = ',';
+			chords['543'] = '.';
+			chords['5432'] = '.'; //duplicate for convenience
+
+			chords['2'] = 'E';
+			chords['3'] = 'T';
+			chords['4'] = 'A';
+			chords['5'] = 'O';
+			chords['32'] = 'I';
+			chords['43'] = 'N';
+			chords['42'] = 'S';
+			chords['41'] = 'H';
+			chords['31'] = 'R';
+			chords['21'] = 'D';
+			chords['23'] = 'L';
+			chords['51'] = 'C';
+			chords['52'] = 'U';
+			chords['53'] = 'M';
+			chords['24'] = 'F';
+			chords['34'] = 'P';
+			chords['13'] = 'G';
+			chords['12'] = 'W';
+			chords['14'] = 'Y';
+			chords['54'] = 'B';
+			chords['15'] = 'V';
+			chords['25'] = 'K';
+			chords['431'] = 'X';
+			chords['321'] = 'J';
+			chords['35'] = 'Q';
+			chords['45'] = 'Z';
+
+			var home = [' ', 'F', 'D', 'S', 'A']; //qwerty
+			
+			var raw = "";
+			var pressed = [];
+			var count = 0;
+			var writing = ""
+
+			var test = "the quick brown fox jumps over the lazy dog"
+			var start = 0;
+			var cursor = '<span style="background-color:#D6D6D6;">&nbsp;</span>'
+
+			document.body.addEventListener("keydown", keydownHandler);
+			document.body.addEventListener("keyup", keyupHandler);
+			var speed = document.getElementById("speed");
+			var timer = document.getElementById("timer");
+			var timeout;
+
+			document.getElementById("test").innerHTML = test;
+			var practice = document.getElementById("practice");
+			y = 0;
+
+			function keydownHandler(e) {
+				var key = e.which;
+				var letter = String.fromCharCode(key);
+				
+				if (pressed[key] == true) { return; }
+
+				for (i = 0; i < 5; i++) {
+					if (letter == home[i]) {
+						pressed[key] = true;
+						count++;
+						raw += (i+1);
+						//x.innerHTML = raw;
+					}
+				}
+
+				//prevents scrolling when pressing spacebar
+				if (key == 32) {
+					e.preventDefault();
+				}
+				//if (key == 9) {
+				//	e.preventDefault();
+				//}
+
+				if (key == 8 || key == 20) {
+					e.preventDefault();
+					writing = writing.slice(0, writing.length-1);
+					var output = writing.replace(" ", "&nbsp;");
+					output += cursor;
+					practice.innerHTML = output;
+
+				}
+
+				if (start == 0 && count != 0) {
+					start = Date.now();
+					timeout = window.setTimeout(timeoutHandler, 1000);
+					timer.innerHTML = '0';
+					speed.innerHTML = '-';
+				}
+			}
+
+			function timeoutHandler() {
+				var elapsed = (Date.now() - start) / 1000;
+				var error = elapsed - Math.floor(elapsed);
+				error = Math.floor(error * 1000);
+				timer.innerHTML = Math.floor(elapsed);
+				if (elapsed < 60) {
+					timeout = window.setTimeout(timeoutHandler, 1000-error);
+				}
+			}
+
+			function pad(s){
+				return s;
+			}
+
+			function keyupHandler(e) {
+				var key = e.which;
+				var letter = String.fromCharCode(key);
+
+				if (pressed[key] == true) { 
+					pressed[key] = false;
+					count--;
+				}
+
+				//special case for caps lock being turned off
+				if (key == 20) {
+					e.preventDefault();
+					writing = writing.slice(0, writing.length-1);
+					var output = writing.replace(" ", "&nbsp;");
+					output += cursor;
+					practice.innerHTML = output;
+				}
+
+				if (count == 0) {
+					if(chords[raw]) {
+						//x.innerHTML = raw;
+						//x2.innerHTML = chords[raw];
+						//writing += raw + "_"; //use for getting raw out
+						writing += chords[raw].toLowerCase();
+
+						var output = writing.replace(" ", "&nbsp;");
+						output += cursor;
+						practice.innerHTML = output;
+					} else {
+						if (key != 8) {
+							// x2.innerHTML = "unassigned";
+						}
+						
+					}
+					raw = "";
+
+					if(start != 0 && writing == test) {
+						window.clearTimeout(timeout);
+						var elapsed = Date.now() - start; //ms
+						var seconds = Math.round(elapsed / 100) / 10;
+						var wpm = (test.length / 5) / (elapsed / 1000 / 60);
+						wpm = Math.round(wpm * 10) / 10;
+
+						speed.innerHTML = pad(wpm);
+						timer.innerHTML = pad(seconds);
+
+						start = 0;
+						writing = "";
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
