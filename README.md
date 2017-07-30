@@ -12,7 +12,6 @@ a web based mockup of the chorded keyboard layout for demonstration and training
 - backspace is bound to the caps lock key
 
 ### tips:
-- curl your fingers (in towards palm) slightly more than usual
+- curl your fingers (in towards palm) slightly more than your usual typing position
 - keep your wrist steady while typing (don't roll your wrist)
-  + you can use your right hand to hold your wrist 
-    steady while you get used to chording
+  + you can use your right hand to hold your wrist steady while you get used to chording
