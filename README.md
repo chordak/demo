@@ -2,8 +2,9 @@
 a web based mockup of the chorded keyboard layout for demonstration and training
 
 ### instructions:
-- save the file "chordak-demo.html" to your computer
-- open it in chrome or firefox
+- click "Clone or download" and then "Download ZIP"
+- unzip and open "demo-master.zip"
+- open "chordak-demo.html" in chrome, firefox, or safari
 - place your left hand on the home row keys (ASDF) and the spacebar
 - start typing following the chord guide
 
