@@ -8,7 +8,7 @@ a web based mockup of the chorded keyboard layout for demonstration and training
 - start typing following the chord guide
 
 ### notes:
-- keys must be pressed in the order shown
+- keys must be pressed in the order shown in the chord guide
 - backspace is bound to the caps lock key
 
 ### tips:
